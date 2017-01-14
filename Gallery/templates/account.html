@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row" >
+            <div class="col-md-12" style="background: #000000; color: #ffffff; position: fixed; height: 50px; z-index: 999;">
+                <div class="col-md-3">
+                    <a href="{% url 'index' %}">Home</a>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 50px;">
+            {% if current_page_id == current_user_id %}
+            <div>
+                <form method="post" enctype="multipart/form-data" action="{% url 'upload_image' user.id %}">
+                    {% csrf_token %}
+                    {{ upload_form.image }}
+                    <input type="submit" value="Upload image"/>
+                </form>
+            </div>
+            {% endif %}
+            <div>
+                <form action="{% url 'logouting' %}">
+                    <input type="submit" value="Logout" />
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            {% for image in object_list %}
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <img src="/media/{{ image.image }}" class="img-thumbnail" />
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -15,7 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
+from photos import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-]
+    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^register/$', views.RegisterView.as_view(), name='register'),
+    url(r'^registration/$', views.register, name='registration'),
+    url(r'^login/$', views.LoginView.as_view(), name='login_view'),
+    url(r'^logging/$', views.login_view, name='logging'),
+    url(r'^logout/$', views.logout_view, name='logouting'),
+    url(r'^id_(?P<id>[0-9]+)/$', views.AccountView.as_view(), name='account'),
+    url(r'^upload_id_(?P<id>[0-9]+)$', views.upload_image, name='upload_image')
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
