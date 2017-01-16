@@ -1,17 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div class="row" >
-        <div class="col-md-12" style="background: #000000; color: #ffffff; position: fixed; height: 50px; z-index: 999;">
-            <div class="col-md-3">
-                <a href="{% url 'index' %}">Home</a>
-            </div>
-            <div class="col-md-3">
-                <a href="{% url 'register' %}">Register</a>
-                <a href="{% url 'login_view' %}">Login</a>
-            </div>
-        </div>
-    </div>
-    <form method="post" action="/registration/" style="margin-top: 50px;">
+    {% include 'header.html' %}
+    <form method="post" action="/registration/">
         {% csrf_token %}
         <div class="form-group">
           <label for="id_username">Username</label>

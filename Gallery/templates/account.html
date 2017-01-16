@@ -2,13 +2,13 @@
 {% block content %}
     <div class="container">
         <div class="row" >
-            <div class="col-md-12" style="background: #000000; color: #ffffff; position: fixed; height: 50px; z-index: 999;">
+            <div class="col-md-12" style="background: #000000; color: #ffffff; padding: 15px;">
                 <div class="col-md-3">
-                    <a href="{% url 'index' %}">Home</a>
+                    <a class="btn btn-default" href="{% url 'index' %}">Home</a>
                 </div>
             </div>
         </div>
-        <div class="row" style="margin-top: 50px;">
+        <div class="row">
             {% if current_page_id == current_user_id %}
             <div>
                 <form method="post" enctype="multipart/form-data" action="{% url 'upload_image' user.id %}">

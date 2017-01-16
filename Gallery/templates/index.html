@@ -1,18 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
     <div class="container">
-        <div class="row" >
-            <div class="col-md-12" style="background: #000000; color: #ffffff; position: fixed; height: 50px; z-index: 999;">
-                <div class="col-md-3">
-                    <a href="{% url 'index' %}">Home</a>
-                </div>
-                <div class="col-md-3">
-                    <a href="{% url 'register' %}">Register</a>
-                    <a href="{% url 'login_view' %}">Login</a>
-                </div>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 50px;">
+        {% include 'header.html' %}
+        <div class="row">
             {% for image in object_list %}
             <div class="col-lg-1 col-md-2 col-sm-6">
                 <img src="/media/{{ image.image }}" class="img-thumbnail" />
