@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
     {% include 'header.html' %}
+    {{ error_message }}
     <form method="post" action="/logging/">
         {% csrf_token %}
         <div class="form-group">

@@ -41,6 +41,8 @@ def register(request):
         new_user.save()
         print(new_user.id)
         return HttpResponseRedirect(reverse('account', args=(new_user.id,)))
+    else:
+        return render(request, 'register.html', {'error_message': 'Passwords should be the same!'})
 
 
 def upload_image(request, id):
@@ -54,7 +56,7 @@ class LoginView(generic.FormView):
     form_class = AuthForm
 
 
-def login_view(request):
+def logging_in(request):
     try:
         user = authenticate(username=request.POST['username'], password=request.POST['password'])
         if user is not None:
@@ -62,11 +64,11 @@ def login_view(request):
             request.session['id'] = user.id
             return HttpResponseRedirect(reverse_lazy('account', args=(user.id,)))
         else:
-            return render(request, 'login.html')
+            return render(request, 'login.html', {'error_message': 'Wrong username or password!'})
     except:
-        return render(request, 'login.html')
+        return render(request, 'login.html', {'error_message': 'Wrong username or password!'})
 
 
-def logout_view(request):
+def logging_out(request):
     logout(request)
     return HttpResponseRedirect(reverse_lazy('index'))
